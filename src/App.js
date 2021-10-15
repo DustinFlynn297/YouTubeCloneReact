@@ -1,31 +1,42 @@
 import axios from 'axios';
 import './App.css';
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import ResultsTable from './components/ResultsTable/ResultsTable';
+import Results from './components/Results/Results';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      video: []
-     }
+
+function App(props) {
+  const [searchResults, setVideoResults] = useState([]);
+  const [searchInput, enterSearch] = useState('castles');
+
+
+  async function fetchSearchresults(){
+    let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?q=${searchInput}&key=AIzaSyAOyG4Z4cTTK9TQEELOis9CYRdWmDSjq-0&maxResults=10&part=snippet`);
+    console.log(response.data)
+    setVideoResults(response.data.items);
   }
 
-  componentDidMount(){
-    this.getVideos();
+  function mapSearchResults(){
+    console.log(searchResults)
+    return searchResults.map(result =>
+      <Results
+        result={result}
+      />
+      )
   }
 
-  getVideos = async () => {
-    try {
-      let response = await axios.get('')
+  useEffect(() => {
+    let mounted = true;
+    if(mounted){
+      fetchSearchresults();
     }
-  }
+    return () => mounted = false;
+  }, [])
 
-  render() { 
-    return ( <div className="App">
-      
-    </div> );
-  }
+  return (
+    <div>
+      <ResultsTable mapSearchResults={mapSearchResults}/>
+    </div>
+  );
 }
- 
-
 export default App;

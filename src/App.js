@@ -1,6 +1,7 @@
 import axios from 'axios';
 import './App.css';
 import React, { Component } from 'react';
+import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 
 class App extends Component {
   constructor(props) {
@@ -9,6 +10,8 @@ class App extends Component {
       video: []
      }
   }
+
+
 
   // componentDidMount(){
   //   this.getVideos();
@@ -23,7 +26,7 @@ class App extends Component {
   render() { 
     return ( <div class="app">
       <section id="selectedVideo">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/uhD0wFiDJfc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <VideoPlayer />
       </section>
       <main>
         <article>

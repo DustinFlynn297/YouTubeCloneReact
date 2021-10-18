@@ -22,9 +22,9 @@ function App(props) {
   return (
     <div>
       <SearchBar handleSearchSubmit={fetchSearchresults} />
-      <ResultsTable videos={searchResults} setVideo={setVideo}/>
       <VideoPlayer video={video}/>
-    </div>
+      <ResultsTable videos={searchResults} setVideo={setVideo}/>
+          </div>
   );
 }
 export default App;

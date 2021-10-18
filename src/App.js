@@ -24,6 +24,7 @@ function App(props) {
       <SearchBar handleSearchSubmit={fetchSearchresults} />
       <ResultsTable videos={searchResults} setVideo={setVideo}/>
       <VideoPlayer video={video}/>
+      
     </div>
   );
 }

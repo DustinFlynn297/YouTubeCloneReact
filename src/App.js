@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import ResultsTable from './components/ResultsTable/ResultsTable';
 import Results from './components/Results/Results';
+import KEY from './api-key'
 
 
 function App(props) {
@@ -11,7 +12,7 @@ function App(props) {
 
 
   async function fetchSearchresults(){
-    let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?q=${searchInput}&key=AIzaSyAOyG4Z4cTTK9TQEELOis9CYRdWmDSjq-0&maxResults=10&part=snippet`);
+    let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?q=${searchInput}&key=${KEY}&maxResults=10&part=snippet`);
     console.log(response.data)
     setVideoResults(response.data.items);
   }

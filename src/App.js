@@ -3,11 +3,12 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import ResultsTable from './components/ResultsTable/ResultsTable';
 import Results from './components/Results/Results';
+import SearchBar from './components/SearchBar/SearchBar';
 
 
 function App(props) {
   const [searchResults, setVideoResults] = useState([]);
-  const [searchInput, enterSearch] = useState('castles');
+  const [searchInput, enterSearch] = useState();
 
 
   async function fetchSearchresults(){
@@ -35,6 +36,7 @@ function App(props) {
 
   return (
     <div>
+      <SearchBar handleSearchSubmit={enterSearch} startSearch={fetchSearchresults}/>
       <ResultsTable mapSearchResults={mapSearchResults}/>
     </div>
   );

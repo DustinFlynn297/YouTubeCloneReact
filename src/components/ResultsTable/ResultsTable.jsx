@@ -5,7 +5,8 @@ const ResultsTable = (props) => {
         <table className="table">
             <thead>
                 <tr>
-                    <th>Video ID</th>
+                    <th>Title</th>
+                    <th>Thumbnail</th>
                 </tr>
             </thead>
             {props.mapSearchResults()}

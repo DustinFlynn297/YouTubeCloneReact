@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 
 
+
 function App(props) {
   const [searchResults, setVideoResults] = useState([]);
   const [searchInput, enterSearch] = useState();
@@ -15,7 +16,7 @@ function App(props) {
 
 
   async function fetchSearchresults(){
-    let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?q=${searchInput}&key=AIzaSyAOyG4Z4cTTK9TQEELOis9CYRdWmDSjq-0&maxResults=10&part=snippet`);
+    let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?q=${searchInput}&key=${KEY}&maxResults=10&part=snippet`);
     console.log(response.data)
     setVideoResults(response.data.items);
   }

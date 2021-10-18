@@ -1,17 +1,15 @@
 import React from 'react';
+import Results from '../Results/Results';
 
 const ResultsTable = (props) => {
-    return (
-        <table className="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Thumbnail</th>
-                </tr>
-            </thead>
-            {props.mapSearchResults()}
-        </table>
-    );
-}
+    
+    
+
+    return( props.videos.map(video =>
+        <Results
+          video={video} setVideo={props.setVideo}
+        />
+        ) );
+};
 
 export default ResultsTable;

@@ -2,10 +2,12 @@ import React from 'react';
 
 const Results = (props) => {
     return (
-                <tr>
-                    <td>{props.result.snippet.title}</td>
-                    <td><iframe> src="{props.result.snippet.thumbnails.medium.url}" </iframe></td>
-                </tr>
+                <ul>
+                    
+                    <div onClick={ () => props.setVideo(props.video)}>
+                        <li><img src={props.video.snippet.thumbnails.medium.url} /></li>
+                    </div>
+                </ul>
     );
 }
 

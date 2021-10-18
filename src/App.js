@@ -12,6 +12,7 @@ import Comment from './components/Comment/Comment'
 function App(props) {
   const [searchResults, setVideoResults] = useState([]);
   const [video, setVideo] = useState();
+  const [comments, setComments] = useState([])
 
 
   async function fetchSearchresults(searchInput){
@@ -24,10 +25,11 @@ function App(props) {
     await axios.get('http://127.0.0.1:8000/YouTube_API/' + videoId + '/')
   }
 
-  async function postComment(videoId){
+  async function postComment(comment){
     try {
-      await axios.post('http://127.0.0.1:8000/YouTube_API/');
-      listComments(videoId);
+      let response = await axios.post('http://127.0.0.1:8000/YouTube_API/', comment);
+      setComments(response.data);
+      listComments(comments);
     }
     catch(ex) {
       console.log('Error in posting comment', ex)
@@ -38,7 +40,7 @@ function App(props) {
     <div>
       <SearchBar handleSearchSubmit={fetchSearchresults} />
       <VideoPlayer video={video}/>
-      <Comment postComment={postComment}/>
+      <Comment postComment={postComment} video={video}/>
       <ResultsTable videos={searchResults} setVideo={setVideo}/>
           </div>
   );

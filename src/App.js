@@ -38,7 +38,7 @@ function App(props) {
     <div>
       <SearchBar handleSearchSubmit={fetchSearchresults} />
       <VideoPlayer video={video}/>
-      <Comment postComment={postComment}/>
+      <Comment postComment={postComment} video={video}/>
       <ResultsTable videos={searchResults} setVideo={setVideo}/>
           </div>
   );

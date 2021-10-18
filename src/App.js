@@ -1,45 +1,42 @@
 import axios from 'axios';
 import './App.css';
-import React, { Component } from 'react';
-import VideoPlayer from './components/VideoPlayer/VideoPlayer';
-import SearchBar from './SearchBar/SearchBar';
-const KEY = 'AIzaSyB80yPVV-_qG__S5Ei-FfcSk61yBZ12cwI' 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      video: []
-     }
+import React, { useState, useEffect } from 'react';
+import ResultsTable from './components/ResultsTable/ResultsTable';
+import Results from './components/Results/Results';
+
+
+function App(props) {
+  const [searchResults, setVideoResults] = useState([]);
+  const [searchInput, enterSearch] = useState('castles');
+
+
+  async function fetchSearchresults(){
+    let response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?q=${searchInput}&key=AIzaSyAOyG4Z4cTTK9TQEELOis9CYRdWmDSjq-0&maxResults=10&part=snippet`);
+    console.log(response.data)
+    setVideoResults(response.data.items);
   }
 
-  
-
-  componentDidMount(){
-    this.getVideos();
+  function mapSearchResults(){
+    console.log(searchResults)
+    return searchResults.map(result =>
+      <Results
+        result={result}
+      />
+      )
   }
 
-  getVideos = async () => {
-    try {
-      let response = await axios.get('https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=As1bpICMhzs&key=AIzaSyAOyG4Z4cTTK9TQEELOis9CYRdWmDSjq-0')
-      this.setState({
-        video: response.data
-      })
+  useEffect(() => {
+    let mounted = true;
+    if(mounted){
+      fetchSearchresults();
     }
-    catch (ex) {
-      console.log('Error in get Videos API call', ex)
-    }
-  }
+    return () => mounted = false;
+  }, [])
 
-  render() { 
-    return ( <div class="app">
-      
-        <VideoPlayer video={this.state.video}/>        
-      
-      
-      
-    </div> );
-  }
+  return (
+    <div>
+      <ResultsTable mapSearchResults={mapSearchResults}/>
+    </div>
+  );
 }
- 
-
 export default App;

@@ -16,7 +16,7 @@ const VideoPlayer = (props) => {
 
     return ( 
         <div>
-            <iframe src={videoLink} />
+            <iframe title={videoTitle} src={videoLink} />
             <h3>{videoTitle}</h3>
             <h3>{videoDescription}</h3>
         </div>

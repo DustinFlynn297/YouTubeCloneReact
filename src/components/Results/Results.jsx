@@ -5,7 +5,7 @@ const Results = (props) => {
                 <ul>
                     
                     <div onClick={ () => props.setVideo(props.video)}>
-                        <li><img src={props.video.snippet.thumbnails.medium.url} /></li>
+                        <li><img src={props.video.snippet.thumbnails.medium.url} alt=""/></li>
                     </div>
                 </ul>
     );

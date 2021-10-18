@@ -5,6 +5,7 @@ import ResultsTable from './components/ResultsTable/ResultsTable';
 import Results from './components/Results/Results';
 import SearchBar from './components/SearchBar/SearchBar';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
+import Comment from './components/Comment/Comment'
 
 
 
@@ -19,13 +20,27 @@ function App(props) {
     setVideoResults(response.data.items);
   }
 
+  async function listComments(videoId){
+    await axios.get('http://127.0.0.1:8000/YouTube_API/' + videoId + '/')
+  }
+
+  async function postComment(videoId){
+    try {
+      await axios.post('http://127.0.0.1:8000/YouTube_API/');
+      listComments(videoId);
+    }
+    catch(ex) {
+      console.log('Error in posting comment', ex)
+    }
+  }
+
   return (
     <div>
       <SearchBar handleSearchSubmit={fetchSearchresults} />
-      <ResultsTable videos={searchResults} setVideo={setVideo}/>
       <VideoPlayer video={video}/>
-      
-    </div>
+      <Comment postComment={postComment}/>
+      <ResultsTable videos={searchResults} setVideo={setVideo}/>
+          </div>
   );
 }
 export default App;

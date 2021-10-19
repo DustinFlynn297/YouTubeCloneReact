@@ -21,7 +21,7 @@ class Comment extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.postComment(this.state)
+        this.props.postComment(this.state, this.props.video)
     }
     render() { 
         return ( 

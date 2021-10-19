@@ -6,9 +6,7 @@ const ResultsTable = (props) => {
     
 
     return( props.videos.map(video =>
-        <Results
-          video={video} setVideo={props.setVideo}
-        />
+        <Results video={video} setVideo={props.setVideo} />
         ) );
 };
 

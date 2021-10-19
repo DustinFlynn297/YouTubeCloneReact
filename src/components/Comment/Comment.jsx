@@ -6,16 +6,16 @@ class Comment extends Component {
         this.state = {
             comment_body: '',
             videoid: '',
-            likes: 0,
-            dislikes: 0, 
+            like: 0,
+            dislike: 0, 
             
         }
     }
     
     handleChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value,
-            videoid: this.props.video.id.videoId
+            [event.target.name]: event.target.value
+            
         })
     }
 
@@ -26,7 +26,7 @@ class Comment extends Component {
     render() { 
         return ( 
             <form onSubmit={this.handleSubmit}>
-            <input type="text" name="comment_body" onChange={this.handleChange} value={this.state.comment_body} placeholder="Add a public comment..."/>
+            <input name="comment_body" onChange={this.handleChange} value={this.state.comment_body} placeholder="Add a public comment..."/>
             <button type="submit">Comment</button>
             <p></p>
             </form>

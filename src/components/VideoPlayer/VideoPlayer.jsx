@@ -1,4 +1,5 @@
 import React from 'react';
+import Comment from '../Comment/Comment';
 
 const VideoPlayer = (props) => {
     if (!props.video) {
@@ -13,6 +14,7 @@ const VideoPlayer = (props) => {
     const videoLink = `https://www.youtube.com/embed/${props.video.id.videoId}`
     const videoTitle = `${props.video.snippet.title}`
     const videoDescription = `${props.video.snippet.description}`
+
 
     return ( 
         <div>

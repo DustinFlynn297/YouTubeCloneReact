@@ -1,8 +1,9 @@
 import React from 'react';
-import Comment from '../Comment/Comment';
+
 
 const VideoPlayer = (props) => {
-    if (!props.video) {
+    console.log(props.selectedVideo)
+    if (!props.selectedVideo || props.selectedVideo.length < 1) {
         return <div>
            
            <p>
@@ -10,20 +11,19 @@ const VideoPlayer = (props) => {
            </p>
         </div>;
       }
-
-    const videoLink = `https://www.youtube.com/embed/${props.video.id.videoId}`
-    const videoTitle = `${props.video.snippet.title}`
-    const videoDescription = `${props.video.snippet.description}`
+    
+    const videoLink = `https://www.youtube.com/embed/${props.selectedVideo.id.videoId}`
+    const videoTitle = `${props.selectedVideo.snippet.title}`
+    const videoDescription = `${props.selectedVideo.snippet.description}`
 
 
     return ( 
         <div>
             <iframe title={videoTitle} src={videoLink} />
             <h3>{videoTitle}</h3>
-            <h3>{videoDescription}</h3>
+            <h4>{videoDescription}</h4>
         </div>
     )
 }
  
 export default VideoPlayer;
-

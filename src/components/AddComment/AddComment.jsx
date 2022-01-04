@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Comment extends Component {
+class AddComment extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,17 +21,16 @@ class Comment extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.postComment(this.state)
+        this.props.postComment(this.state, this.props.selectedVideo)
     }
     render() { 
         return ( 
             <form onSubmit={this.handleSubmit}>
             <input name="comment_body" onChange={this.handleChange} value={this.state.comment_body} placeholder="Add a public comment..."/>
             <button type="submit">Comment</button>
-            <p></p>
             </form>
          );
     }
 }
  
-export default Comment;
+export default AddComment;

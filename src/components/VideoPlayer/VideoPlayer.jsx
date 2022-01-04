@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const VideoPlayer = (props) => {
     console.log(props.selectedVideo)
     if (!props.selectedVideo || props.selectedVideo.length < 1) {
